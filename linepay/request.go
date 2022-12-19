@@ -64,28 +64,38 @@ type RequestOptionsDisplay struct {
 // RequestOptionsShipping type
 type RequestOptionsShipping struct {
 	Type           string `json:"type,omitempty"`
+	FeeAmount      string `json:"feeAmount,omitempty"`
 	FeeInquiryURL  string `json:"feeInquiryUrl,omitempty"`
 	FeeInquiryType string `json:"feeInquiryType,omitempty"`
 }
 
 // RequestOptionsExtras type
 type RequestOptionsExtras struct {
-	FamilyService struct {
-		AddFriends []struct {
-			Type string   `json:"type,omitempty"`
-			IDs  []string `json:"ids,omitempty"`
-		} `json:"addFriends,omitempty"`
-	} `json:"familyService,omitempty"`
-	BranchName string `json:"branchName,omitempty"`
-	BranchID   string `json:"branchId,omitempty"`
+	BranchName           string                `json:"branchName,omitempty"`
+	BranchID             string                `json:"branchId,omitempty"`
+	PromotionRestriction *PromotionRestriction `json:"promotionRestriction,omitempty"`
+}
+
+type PromotionRestriction struct {
+	UseLimit    int `json:"useLimit,omitempty"`
+	RewardLimit int `json:"rewardLimit,omitempty"`
+}
+
+// RequestFamilyService type
+type RequestFamilyService struct {
+	AddFriends []struct {
+		Type string   `json:"type,omitempty"`
+		IDs  []string `json:"ids,omitempty"`
+	} `json:"addFriends,omitempty"`
 }
 
 // RequestOptions type
 type RequestOptions struct {
-	Payment  *RequestOptionsPayment  `json:"payment,omitempty"`
-	Display  *RequestOptionsDisplay  `json:"display,omitempty"`
-	Shipping *RequestOptionsShipping `json:"shipping,omitempty"`
-	Extras   *RequestOptionsExtras   `json:"extras,omitempty"`
+	Payment       *RequestOptionsPayment  `json:"payment,omitempty"`
+	Display       *RequestOptionsDisplay  `json:"display,omitempty"`
+	Shipping      *RequestOptionsShipping `json:"shipping,omitempty"`
+	Extras        *RequestOptionsExtras   `json:"extra,omitempty"`
+	FamilyService *RequestFamilyService   `json:"familyService,omitempty"`
 }
 
 // RequestRequest type
