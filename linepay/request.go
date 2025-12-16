@@ -85,7 +85,7 @@ type PromotionRestriction struct {
 type RequestFamilyService struct {
 	AddFriends []struct {
 		Type string   `json:"type,omitempty"`
-		IDs  []string `json:"ids,omitempty"`
+		IDs  []string `json:"idList,omitempty"`
 	} `json:"addFriends,omitempty"`
 }
 

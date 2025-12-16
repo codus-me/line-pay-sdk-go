@@ -37,6 +37,17 @@ func TestClient_Request(t *testing.T) {
 			ConfirmURL: "https://pay-store.line.com/order/payment/authorize",
 			CancelURL:  "https://pay-store.line.com/order/payment/cancel",
 		},
+		Options: &RequestOptions{
+			Payment: &RequestOptionsPayment{
+				PayType: "NORMAL",
+			},
+			Extras: &RequestOptionsExtras{
+				PromotionRestriction: &PromotionRestriction{
+					UseLimit:    100,
+					RewardLimit: 100,
+				},
+			},
+		},
 	}
 
 	mux.HandleFunc("/v3/payments/request", func(w http.ResponseWriter, r *http.Request) {
